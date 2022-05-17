@@ -1,4 +1,4 @@
-# :newspaper: NotePad
+# 📔 NotePad
 
 NotePad é uma aplicação utilitaria onde você pode fazer aquela anotação importante no seu dia a dia
 
