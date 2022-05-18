@@ -20,15 +20,3 @@ export const Title = styled.Text`
   font-size: ${RFValue(43)}px;
   color: ${({ theme }) => theme.colors.shape};
 `;
-
-export const ShortcutButton = styled(RectButton)`
-  padding: 13px;
-  border-radius: 15px;
-
-  background: ${({ theme }) => theme.colors.primaryLight};
-`;
-
-export const ShortcutButtonTitle = styled.Text`
-  font-size: ${RFValue(18)}px;
-  color: ${({ theme }) => theme.colors.shape};
-`;

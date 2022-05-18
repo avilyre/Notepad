@@ -1,11 +1,10 @@
 import React from "react";
-import { Text } from "react-native";
+import { ShortcutButton } from "../../components/ShortcutButton";
+
 import {
   Container,
   Header,
-  Title,
-  ShortcutButton,
-  ShortcutButtonTitle
+  Title
 } from "./styles";
 
 export function Home(): JSX.Element {
@@ -13,9 +12,10 @@ export function Home(): JSX.Element {
     <Container>
       <Header>
         <Title>Notas</Title>
-        <ShortcutButton>
-          <ShortcutButtonTitle>Criar</ShortcutButtonTitle>
-        </ShortcutButton>
+        <ShortcutButton
+          title="Criar"
+          onPress={() => { }}
+        />
       </Header>
     </Container>
   );
