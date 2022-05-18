@@ -4,11 +4,6 @@ import styled from "styled-components/native";
 
 import { NoteProps } from "../../components/Note/interface";
 
-export const Container = styled.View`
-  flex: 1;
-  background: ${({ theme }) => theme.colors.primary};
-`;
-
 export const NoteList = styled(
   FlatList as unknown as new (
     props: FlatListProps<NoteProps>

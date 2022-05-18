@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
-import { ShortcutButton } from "../../components/ShortcutButton";
 import { Note } from "../../components/Note";
 import { NoteItem } from "../../components/Note/interface";
 
-import { Container, NoteList, NoteSeparator } from "./styles";
-import { Header } from "../../components/Header";
+import { NoteList, NoteSeparator } from "./styles";
+import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
 
 export function Home(): JSX.Element {
   const [notes] = useState<NoteItem[]>([
@@ -17,9 +16,15 @@ export function Home(): JSX.Element {
   ]);
 
   return (
-    <Container>
-      <Header />
-
+    <ScreenTemplate
+      header={{
+        title: "Notas",
+        shortcutActionButton: {
+          title: "Criar",
+          onPress: () => { }
+        }
+      }}
+    >
       <NoteList
         data={notes}
         keyExtractor={item => item.id!}
@@ -29,6 +34,6 @@ export function Home(): JSX.Element {
           <Note title={note.title} onPress={() => { }} />
         )}
       />
-    </Container>
+    </ScreenTemplate>
   );
 }
