@@ -6,12 +6,7 @@ import { Container } from "./styles";
 export function ScreenTemplate({ children, header }: ScreenTemplateProps): JSX.Element {
   return (
     <Container>
-      <Header
-        title={header.title}
-        editMode={header.editMode}
-        shortcutActionButton={header.shortcutActionButton}
-        onChangeTitle={header.onChangeTitle}
-      />
+      <Header {...header} />
       {children}
     </Container>
   );

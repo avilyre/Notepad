@@ -1,6 +1,6 @@
 export interface HeaderProps {
   title: string;
-  editMode?: boolean;
+  isEditMode?: boolean;
   shortcutActionButton?: {
     title: string;
     onPress(): void;

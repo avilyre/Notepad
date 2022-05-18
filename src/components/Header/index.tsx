@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { Alert } from "react-native";
 
 import { useTheme } from "styled-components";
 
@@ -10,7 +11,7 @@ import { Container, TitleInput } from "./styles";
 export function Header({
   title,
   shortcutActionButton,
-  editMode = false,
+  isEditMode = false,
   onChangeTitle
 }: HeaderProps): JSX.Element {
   const theme = useTheme();
@@ -18,7 +19,7 @@ export function Header({
     <Container>
       <TitleInput
         value={title}
-        editable={editMode}
+        editable={isEditMode}
         maxLength={15}
         placeholder="Título"
         placeholderTextColor={theme.colors.noteTextLight}
@@ -27,8 +28,8 @@ export function Header({
 
       {shortcutActionButton && (
         <ShortcutButton
-          title={shortcutActionButton.title}
-          onPress={shortcutActionButton.onPress}
+          isActive={isEditMode}
+          {...shortcutActionButton}
         />
       )}
     </Container>
