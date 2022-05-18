@@ -7,12 +7,17 @@ import { NotesScreenProps } from "./interface";
 import { useNotes } from "../../hooks/useNotes";
 
 import { NoteList, NoteSeparator } from "./styles";
+import { NoteItem } from "../../components/Note/interface";
 
 export function NotesScreen({ navigation }: NotesScreenProps): JSX.Element {
-  const { notes, createNote } = useNotes();
+  const { notes } = useNotes();
 
-  function handleViewNote(): void {
-    navigation.navigate(ScreenNames.NotesViewScreen);
+  function handleViewNote(note: NoteItem): void {
+    navigation.navigate(ScreenNames.NotesViewScreen, { note });
+  }
+
+  function handleCreateNote(): void {
+    navigation.navigate(ScreenNames.NoteCreateScreen);
   }
 
   return (
@@ -21,7 +26,7 @@ export function NotesScreen({ navigation }: NotesScreenProps): JSX.Element {
         title: "Notas",
         shortcutActionButton: {
           title: "Criar",
-          onPress: () => { }
+          onPress: handleCreateNote
         }
       }}
     >
@@ -31,7 +36,7 @@ export function NotesScreen({ navigation }: NotesScreenProps): JSX.Element {
         ItemSeparatorComponent={() => <NoteSeparator />}
         contentContainerStyle={{ padding: 24 }}
         renderItem={({ item: note }) => (
-          <Note title={note.title} onPress={handleViewNote} />
+          <Note title={note.title} onPress={() => handleViewNote(note)} />
         )}
       />
     </ScreenTemplate>

@@ -2,12 +2,12 @@ import { FlatListProps } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 
-import { NoteProps } from "../../components/Note/interface";
+import { NoteItem } from "../../components/Note/interface";
 
 export const NoteList = styled(
   FlatList as unknown as new (
-    props: FlatListProps<NoteProps>
-  ) => FlatList<NoteProps>
+    props: FlatListProps<NoteItem>
+  ) => FlatList<NoteItem>
 )`
   flex: 1;
 `;

@@ -3,48 +3,42 @@ import React, { useState } from "react";
 import { useTheme } from "styled-components";
 
 import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
+
 import { useNotes } from "../../hooks/useNotes";
-import { NoteViewScreenProps } from "./interface";
+import { ScreenNames } from "../../routes/interface";
+import { NoteCreateScreenProps } from "./interface";
 
 import { DescriptionInput } from "./styles";
 
-export function NoteViewScreen({ route }: NoteViewScreenProps): JSX.Element {
-  const note = route.params.note;
-  const { editNote } = useNotes();
+export function NoteCreateScreen({ navigation }: NoteCreateScreenProps): JSX.Element {
   const theme = useTheme();
+  const { createNote } = useNotes();
 
-  const [title, setTitle] = useState(note.title);
-  const [description, setDescription] = useState(note.description);
-  const [isEditMode, setIsEditMode] = useState(false);
-  const editModeText = !isEditMode ? "Editar" : "Salvar";
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   function onChangeTitle(text: string): void {
     setTitle(text);
-  }
-
-  function handleToggleEditMode() {
-    const isEdited = editNote({ id: note.id, title, description });
-
-    if (isEdited) {
-      setIsEditMode(!isEditMode);
-    }
   }
 
   return (
     <ScreenTemplate
       header={{
         title,
-        isEditMode,
+        isEditMode: true,
         onChangeTitle,
         shortcutActionButton: {
-          title: editModeText,
-          onPress: handleToggleEditMode
+          title: "Pronto",
+          onPress: () => {
+            const created = createNote({ title, description });
+            if (created) navigation.navigate(ScreenNames.NotesScreen);
+          }
         }
       }}
     >
       <DescriptionInput
         value={description}
-        editable={isEditMode}
+        editable={true}
         scrollEnabled
         multiline
         textAlignVertical="top"

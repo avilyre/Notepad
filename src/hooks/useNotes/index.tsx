@@ -1,14 +1,17 @@
 import React from "react";
 
 import { createContext, useContext, useState } from "react";
+import { Alert } from "react-native";
 import uuid from "react-native-uuid";
 
 import { NoteItem, NoteProps } from "../../components/Note/interface";
 import { NotesProviderProps } from "./interface";
+import { validateTextInput } from "./utils/validators";
 
 interface NotesContextProps {
   notes: NoteItem[];
-  createNote(note: NoteProps): void;
+  createNote(note: NoteProps): boolean;
+  editNote(note: NoteItem): boolean;
 }
 
 const NotesContext = createContext({} as NotesContextProps);
@@ -16,7 +19,20 @@ const NotesContext = createContext({} as NotesContextProps);
 export function NotesProvider({ children }: NotesProviderProps): JSX.Element {
   const [notes, setNotes] = useState<NoteItem[]>([]);
 
-  function createNote({ title, description }: NoteProps): void {
+  function createNote({ title, description }: NoteProps): boolean {
+    const titleValidated = validateTextInput("Título", title);
+    const descriptionValidated = validateTextInput("Descrição", description || "");
+
+    if (!titleValidated.status.isValid) {
+      Alert.alert("Notepad", titleValidated.status.message);
+      return false;
+    }
+
+    if (!descriptionValidated.status.isValid) {
+      Alert.alert("Notepad", descriptionValidated.status.message);
+      return false;
+    }
+
     const note = {
       id: uuid.v4() as string,
       title,
@@ -24,10 +40,43 @@ export function NotesProvider({ children }: NotesProviderProps): JSX.Element {
     };
 
     setNotes([note, ...notes]);
+    return true;
+  }
+
+  function editNote({ id, title, description }: NoteItem): boolean {
+    const titleValidated = validateTextInput("Título", title);
+    const descriptionValidated = validateTextInput("Descrição", description || "");
+
+    if (!titleValidated.status.isValid) {
+      Alert.alert("Notepad", titleValidated.status.message);
+      return false;
+    }
+
+    if (!descriptionValidated.status.isValid) {
+      Alert.alert("Notepad", descriptionValidated.status.message);
+      return false;
+    }
+
+    const updatedNotes = notes.map(note => {
+      if (note.id === id) {
+        const editedNote = {
+          ...note,
+          title,
+          description
+        }
+
+        return editedNote;
+      }
+
+      return note;
+    });
+
+    setNotes(updatedNotes);
+    return true;
   }
 
   return (
-    <NotesContext.Provider value={{ notes, createNote }}>
+    <NotesContext.Provider value={{ notes, createNote, editNote }}>
       {children}
     </NotesContext.Provider>
   )
