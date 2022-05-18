@@ -4,12 +4,21 @@ NotePad é uma aplicação utilitaria onde você pode fazer aquela anotação im
 
 ### Features
 
-- *:pencil: Em desenvolvimento*
+- *:pencil: Listagem de Notas*
+- *:pencil: Visualização da Nota*
+- *:pencil: Edição de Notas*
+- *:pencil: Apagar Notas existentes*
 
 ### Tecnologias
 
 - *:fire: React Native*
 - *:fire: Styled Components*
+- *:fire: Context API*
+- *:fire: Responsive Font Size*
+
+## A Aplicação
+
+![cover](https://github.com/avilysva/avilysva/blob/master/projects-images/notepad/cover.png)
 
 ### Clonando e Rodando
 ```javascript
