@@ -4,13 +4,8 @@ import { ShortcutButton } from "../../components/ShortcutButton";
 import { Note } from "../../components/Note";
 import { NoteItem } from "../../components/Note/interface";
 
-import {
-  Container,
-  Header,
-  NoteList,
-  NoteSeparator,
-  Title
-} from "./styles";
+import { Container, NoteList, NoteSeparator } from "./styles";
+import { Header } from "../../components/Header";
 
 export function Home(): JSX.Element {
   const [notes] = useState<NoteItem[]>([
@@ -23,21 +18,13 @@ export function Home(): JSX.Element {
 
   return (
     <Container>
-      <Header>
-        <Title>Notas</Title>
-        <ShortcutButton
-          title="Criar"
-          onPress={() => { }}
-        />
-      </Header>
+      <Header />
 
       <NoteList
         data={notes}
         keyExtractor={item => item.id!}
         ItemSeparatorComponent={() => <NoteSeparator />}
-        contentContainerStyle={{
-          padding: 24
-        }}
+        contentContainerStyle={{ padding: 24 }}
         renderItem={({ item: note }) => (
           <Note title={note.title} onPress={() => { }} />
         )}
