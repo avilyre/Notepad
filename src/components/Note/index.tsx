@@ -4,9 +4,9 @@ import { NoteProps } from "./interface";
 
 import { Container, Title } from "./styles";
 
-export function Note({ title }: NoteProps): JSX.Element {
+export function Note({ title, ...rest }: NoteProps): JSX.Element {
   return (
-    <Container>
+    <Container {...rest}>
       <Title>{title}</Title>
     </Container>
   )

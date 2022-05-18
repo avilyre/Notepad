@@ -5,8 +5,10 @@ import { NoteItem } from "../../components/Note/interface";
 
 import { NoteList, NoteSeparator } from "./styles";
 import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
+import { ScreenNames } from "../../routes/interface";
+import { NotesScreenProps } from "./interface";
 
-export function NotesScreen(): JSX.Element {
+export function NotesScreen({ navigation }: NotesScreenProps): JSX.Element {
   const [notes] = useState<NoteItem[]>([
     {
       id: "1",
@@ -14,6 +16,10 @@ export function NotesScreen(): JSX.Element {
       description: "Alguma descrição da Nota.",
     }
   ]);
+
+  function handleViewNote(): void {
+    navigation.navigate(ScreenNames.NotesViewScreen);
+  }
 
   return (
     <ScreenTemplate
@@ -31,7 +37,7 @@ export function NotesScreen(): JSX.Element {
         ItemSeparatorComponent={() => <NoteSeparator />}
         contentContainerStyle={{ padding: 24 }}
         renderItem={({ item: note }) => (
-          <Note title={note.title} onPress={() => { }} />
+          <Note title={note.title} onPress={handleViewNote} />
         )}
       />
     </ScreenTemplate>
