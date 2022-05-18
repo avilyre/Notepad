@@ -13,6 +13,7 @@ NotePad é uma aplicação utilitaria onde você pode fazer aquela anotação im
 
 - *:fire: React Native*
 - *:fire: Styled Components*
+- *:fire: React Navigation*
 - *:fire: Context API*
 - *:fire: Responsive Font Size*
 
