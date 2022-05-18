@@ -12,6 +12,7 @@ interface NotesContextProps {
   notes: NoteItem[];
   createNote(note: NoteProps): boolean;
   editNote(note: NoteItem): boolean;
+  deleteNote(id: string): void;
 }
 
 const NotesContext = createContext({} as NotesContextProps);
@@ -75,8 +76,14 @@ export function NotesProvider({ children }: NotesProviderProps): JSX.Element {
     return true;
   }
 
+  function deleteNote(id: string): void {
+    const updatedNotes = notes.filter(note => note.id !== id);
+
+    setNotes(updatedNotes);
+  }
+
   return (
-    <NotesContext.Provider value={{ notes, createNote, editNote }}>
+    <NotesContext.Provider value={{ notes, createNote, editNote, deleteNote }}>
       {children}
     </NotesContext.Provider>
   )

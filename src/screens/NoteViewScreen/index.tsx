@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 
 import { useTheme } from "styled-components";
-import { DeleteButton } from "../../components/DeleteButton";
 
+import { DeleteButton } from "../../components/DeleteButton";
 import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
 import { useNotes } from "../../hooks/useNotes";
+import { ScreenNames } from "../../routes/interface";
 import { NoteViewScreenProps } from "./interface";
 
 import { DescriptionInput } from "./styles";
 
-export function NoteViewScreen({ route }: NoteViewScreenProps): JSX.Element {
+export function NoteViewScreen({ route, navigation }: NoteViewScreenProps): JSX.Element {
   const note = route.params.note;
-  const { editNote } = useNotes();
+  const { editNote, deleteNote } = useNotes();
   const theme = useTheme();
 
   const [title, setTitle] = useState(note.title);
@@ -29,6 +30,11 @@ export function NoteViewScreen({ route }: NoteViewScreenProps): JSX.Element {
     if (isEdited) {
       setIsEditMode(!isEditMode);
     }
+  }
+
+  function handleDeleteNote() {
+    deleteNote(note.id);
+    navigation.navigate(ScreenNames.NotesScreen);
   }
 
   return (
@@ -53,7 +59,7 @@ export function NoteViewScreen({ route }: NoteViewScreenProps): JSX.Element {
         placeholderTextColor={theme.colors.noteTextLight}
         onChangeText={setDescription}
       />
-      <DeleteButton title="Apagar" onPress={() => { }} />
+      <DeleteButton title="Apagar" onPress={handleDeleteNote} />
     </ScreenTemplate>
   );
 }
