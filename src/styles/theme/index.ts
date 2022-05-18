@@ -7,6 +7,7 @@ export const theme = {
     noteTextLight: "#868686",
 
     shape: "#FFFFFF",
-    sunning: "#FFF599"
+    sunning: "#FFF599",
+    danger: "#FF9E9E"
   }
 }

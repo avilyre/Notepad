@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { useTheme } from "styled-components";
+import { DeleteButton } from "../../components/DeleteButton";
 
 import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
 import { useNotes } from "../../hooks/useNotes";
@@ -52,6 +53,7 @@ export function NoteViewScreen({ route }: NoteViewScreenProps): JSX.Element {
         placeholderTextColor={theme.colors.noteTextLight}
         onChangeText={setDescription}
       />
+      <DeleteButton title="Apagar" onPress={() => { }} />
     </ScreenTemplate>
   );
 }
