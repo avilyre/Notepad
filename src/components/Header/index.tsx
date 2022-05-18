@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { useTheme } from "styled-components";
 
 import { ShortcutButton } from "../ShortcutButton";
-
 import { HeaderProps } from "./interface";
 
-import { Container, Title } from "./styles";
+import { Container, TitleInput } from "./styles";
 
-export function Header({ title, shortcutActionButton }: HeaderProps): JSX.Element {
+export function Header({
+  title,
+  shortcutActionButton,
+  editMode = false,
+  onChangeTitle
+}: HeaderProps): JSX.Element {
+  const theme = useTheme();
   return (
     <Container>
-      <Title>{title}</Title>
+      <TitleInput
+        value={title}
+        editable={editMode}
+        maxLength={15}
+        placeholder="Título"
+        placeholderTextColor={theme.colors.noteTextLight}
+        onChangeText={onChangeTitle}
+      />
 
       {shortcutActionButton && (
         <ShortcutButton

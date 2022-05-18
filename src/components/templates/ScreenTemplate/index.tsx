@@ -8,7 +8,9 @@ export function ScreenTemplate({ children, header }: ScreenTemplateProps): JSX.E
     <Container>
       <Header
         title={header.title}
+        editMode={header.editMode}
         shortcutActionButton={header.shortcutActionButton}
+        onChangeTitle={header.onChangeTitle}
       />
       {children}
     </Container>

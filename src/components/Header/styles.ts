@@ -10,7 +10,9 @@ export const Container = styled.View`
   padding: 24px;
 `;
 
-export const Title = styled.Text`
-  font-size: ${RFValue(43)}px;
+export const TitleInput = styled.TextInput`
+  flex: 1;
+
+  font-size: ${RFValue(32)}px;
   color: ${({ theme }) => theme.colors.shape};
 `;

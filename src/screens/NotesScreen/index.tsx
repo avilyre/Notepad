@@ -6,7 +6,7 @@ import { NoteItem } from "../../components/Note/interface";
 import { NoteList, NoteSeparator } from "./styles";
 import { ScreenTemplate } from "../../components/templates/ScreenTemplate";
 
-export function Home(): JSX.Element {
+export function NotesScreen(): JSX.Element {
   const [notes] = useState<NoteItem[]>([
     {
       id: "1",

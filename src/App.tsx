@@ -3,7 +3,7 @@ import { StatusBar } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { ThemeProvider } from "styled-components/native";
-import { Home } from "./screens/home";
+import { NoteViewScreen } from "./screens/NoteViewScreen";
 import { theme } from "./styles/theme";
 
 export function App() {
@@ -14,7 +14,7 @@ export function App() {
           barStyle="light-content"
           backgroundColor={theme.colors.primary}
         />
-        <Home />
+        <NoteViewScreen />
       </GestureHandlerRootView>
     </ThemeProvider>
   )
