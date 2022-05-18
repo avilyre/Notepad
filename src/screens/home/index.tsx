@@ -1,11 +1,21 @@
 import React from "react";
-import { Container, Header, Title } from "./styles";
+import { Text } from "react-native";
+import {
+  Container,
+  Header,
+  Title,
+  ShortcutButton,
+  ShortcutButtonTitle
+} from "./styles";
 
 export function Home(): JSX.Element {
   return (
     <Container>
       <Header>
         <Title>Notas</Title>
+        <ShortcutButton>
+          <ShortcutButtonTitle>Criar</ShortcutButtonTitle>
+        </ShortcutButton>
       </Header>
     </Container>
   );
